@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>To-Do List</h1>
+    <div class="input-container">
+        <input type="text" id="taskInput" placeholder="What shall we do today?">
+        <button id="addTaskBtn">Add Task</button>
+    </div>
+    <ul id="taskList"></ul>
+</div>
+
+<script src="app.js"></script>
+
+<div class="music-container">
+    <div class="button-wrapper">
+        <button id="playButton" onclick="toggleAudio()">Play / Resume</button>
+        <button id="skipButton" onclick="skipAudio()">Skip</button>
+        <button id="rewindButton" onclick="rewindAudio()">Rewind</button>
+        <button id="returnButton" onclick="returnAudio()">Return</button>
+        <button id="NextButton" onclick="nextAudio()">Next</button>
+        </div>
+</div>
+
+
+
+<script>
+    var audio = new Audio('MattHardy.mp3');
+    audio.loop = false;
+    audio.oncanplay = function() {
+        if (document.getElementById("playButton").classList.contains('playing')) {
+            this.play();
+        }
+    };
+
+    audio.onended = function() {
+        // Replace the URL with the next MP3 file you want to play
+        var nextAudioUrl = 'Shoota.mp3';
+        audio.src = nextAudioUrl;
+        audio.load();
+        audio.play();
+    };
+
+    function toggleAudio() {
+        var playButton = document.getElementById("playButton");
+        if (playButton.classList.contains('playing')) {
+            audio.pause();
+            playButton.textContent = "Play / Resume";
+            playButton.classList.remove('playing');
+        } else {
+            audio.play();
+            playButton.textContent = "Pause";
+            playButton.classList.add('playing');
+        }
+    }
+
+    function skipAudio() {
+        audio.currentTime += 15; // Skip 10 seconds
+    }
+
+    function rewindAudio() {
+        audio.currentTime -= 15; // Rewind 10 seconds
+    }
+
+    function returnAudio() {
+        audio.currentTime -= 1000;
+    }
+
+    function nextAudio() {
+        audio.currentTime += 1000;
+    }
+</script>
+</body>
+</html>
