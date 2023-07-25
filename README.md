@@ -9,11 +9,16 @@ There is a music option for those more technically advanced. The website is preo
 
 In order for a song to be played you must first download an mp3 file and paste it into the directory in which you saved the three code files. After this you will need to edit the HTML code such that the name of the file is called on line 34. An example of such is below:
 
+
 var audio = new Audio('MattHardy.mp3');
+
 
 For additional songs add them to line 44 such as:
 
+
 var nextAudioUrl = 'Shoota.mp3';
+
+
 
 
 Hoping to incorporate Spotify API soon such that there will be a seamless connection between the music and the "website" as well as more choice.
